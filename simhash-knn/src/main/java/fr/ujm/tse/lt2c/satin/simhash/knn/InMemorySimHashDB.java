@@ -311,7 +311,7 @@ public class InMemorySimHashDB {
 	 * @param k
 	 * @return
 	 */
-	protected knnQueryResult kNearestNeighbors(final long[] query, final int k) {
+	protected KnnQueryResult kNearestNeighbors(final long[] query, final int k) {
 		final long t1 = System.nanoTime();
 		final Long[] res = mainkNearestNeighbors(query, k);
 		final long time = System.nanoTime() - t1;
@@ -322,7 +322,7 @@ public class InMemorySimHashDB {
 			documents[j] = (int) (l & 0xFFFFFFFF);
 			distances[j] = (int) (l & 0xFFFFFFFF << 32);
 		}
-		return new knnQueryResult(documents, distances, time);
+		return new KnnQueryResult(documents, distances, time);
 	}
 
 	/**

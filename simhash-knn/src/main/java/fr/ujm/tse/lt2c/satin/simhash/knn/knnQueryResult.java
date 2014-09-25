@@ -10,7 +10,7 @@ package fr.ujm.tse.lt2c.satin.simhash.knn;
  * @author Julien Subercaze
  * 
  */
-public class knnQueryResult {
+public class KnnQueryResult {
 	/**
 	 * K nearest documents
 	 */
@@ -24,7 +24,7 @@ public class knnQueryResult {
 	 */
 	long time;
 
-	public knnQueryResult(final int[] documents, final int[] distances,
+	public KnnQueryResult(final int[] documents, final int[] distances,
 			final long time) {
 		super();
 		this.documents = documents;
