@@ -50,22 +50,22 @@ public class InMemorySimHashDB {
 	 */
 	protected String description = "Simhash DB";
 
-	public InMemorySimHashDB() {
+	protected InMemorySimHashDB() {
 		hashes = new ArrayList<>(DEFAULT_SIZE);
 		simhash = null;
 		charset = null;
 	}
 
-	public InMemorySimHashDB(final SimHash simHash) {
+	protected InMemorySimHashDB(final SimHash simHash) {
 		this(simHash, Charset.defaultCharset());
 
 	}
 
-	public InMemorySimHashDB(final HashFunction hashFunction) {
+	protected InMemorySimHashDB(final HashFunction hashFunction) {
 		this(new SimHash(hashFunction), Charset.defaultCharset());
 	}
 
-	public InMemorySimHashDB(final HashFunction hashFunction,
+	protected InMemorySimHashDB(final HashFunction hashFunction,
 			final Charset charset) {
 		this(new SimHash(hashFunction), charset);
 	}
@@ -194,7 +194,7 @@ public class InMemorySimHashDB {
 	 *
 	 * @return the document ID in the database
 	 */
-	public int putDocument(final Map<String, Double> document) {
+	protected int putDocument(final Map<String, Double> document) {
 		if (document == null || document.size() == 0) {
 			return -1;
 		}
@@ -240,19 +240,19 @@ public class InMemorySimHashDB {
 	 * @return all the document IDs that are within the hamming ball of
 	 *         <code>radius</code> of the given <code>document</code>
 	 */
-	public Collection<Integer> hammingBallNeighbors(
+	protected Collection<Integer> hammingBallNeighbors(
 			final Map<String, Double> document, final int radius) {
 		return hammingBallNeighbors(simhash.hash(document, charset)
 				.toLongArray(), radius);
 	}
 
-	public Collection<Integer> hammingBallNeighbors(final long[] hash,
+	protected Collection<Integer> hammingBallNeighbors(final long[] hash,
 			final int radius) {
 		// FIXME
 		return null;
 	}
 
-	public int[] kNearestNeighbors(final Map<String, Double> document,
+	protected int[] kNearestNeighbors(final Map<String, Double> document,
 			final int k) {
 		final Long[] res = mainkNearestNeighbors(simhash
 				.hash(document, charset).toLongArray(), k);
@@ -297,7 +297,7 @@ public class InMemorySimHashDB {
 		// return result;
 	}
 
-	public long[] getHash(final int documentID) {
+	protected long[] getHash(final int documentID) {
 		if (documentID >= hashes.size()) {
 			return null;
 		}
@@ -311,7 +311,7 @@ public class InMemorySimHashDB {
 	 * @param k
 	 * @return
 	 */
-	public knnQueryResult kNearestNeighbors(final long[] query, final int k) {
+	protected knnQueryResult kNearestNeighbors(final long[] query, final int k) {
 		final long t1 = System.nanoTime();
 		final Long[] res = mainkNearestNeighbors(query, k);
 		final long time = System.nanoTime() - t1;
@@ -333,9 +333,10 @@ public class InMemorySimHashDB {
 	 *            number of nearest neighbors (do not include self)
 	 * @return list of nearest neighbors ID
 	 */
-	public int[] kNearestNeighbors(final int documentID, final int k) {
-		if (documentID > hashes.size()) {
-			return null;
+	protected int[] kNearestNeighbors(final int documentID, final int k) {
+		if (documentID > hashes.size() || documentID < 0) {
+			throw new RuntimeException("Invalid Document ID: " + documentID
+					+ " either <0 or larger than the DB size:" + size());
 		}
 		// Remove the first one, since it is the same document
 		final Long[] res = mainkNearestNeighbors(hashes.get(documentID), k + 1);
@@ -373,7 +374,7 @@ public class InMemorySimHashDB {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#toString()
 	 */
 	@Override

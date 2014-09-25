@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.Map;
 
 import com.google.common.hash.HashFunction;
@@ -63,6 +64,27 @@ public class InMemorySimHashDBwithDocIDs extends InMemorySimHashDB {
 							+ simhash.bits() + ", yours " + table.length * 64);
 		}
 		this.putDocument(table, documentID);
+	}
+
+	/**
+	 * Returns the K-nearest neighbors for a given document
+	 *
+	 * @param documentID
+	 * @param k
+	 * @return
+	 */
+	public String[] kNNFromDocumentID(final String documentID, final int k) {
+		final int index = Collections.binarySearch(documentIDs, documentID);
+		final int[] ids = this.kNearestNeighbors(index, k);
+		final String[] docIDs = new String[ids.length];
+		int i = 0;
+		for (final int id : ids) {
+			if (ids[i] != index) {
+				docIDs[i] = documentIDs.get(ids[i]);
+			}
+			i++;
+		}
+		return docIDs;
 	}
 
 	/**
