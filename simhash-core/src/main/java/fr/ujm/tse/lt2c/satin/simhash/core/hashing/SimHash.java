@@ -27,6 +27,7 @@ public class SimHash {
 	public SimHash(final HashFunction hashFunction) {
 		super();
 		this.hashFunction = hashFunction;
+
 	}
 
 	/**
@@ -68,6 +69,7 @@ public class SimHash {
 			final double[] weighted) {
 		// Add the weighted hashcode in the array
 		final BitSet b = BitSet.valueOf(hash.asBytes());
+
 		for (int i = 0; i < hash.bits(); i++) {
 			weighted[i] += (b.get(i) ? 1 : -1) * weight;
 		}
@@ -75,6 +77,26 @@ public class SimHash {
 
 	public int bits() {
 		return hashFunction.bits();
+	}
+
+	/**
+	 * 
+	 * @param set1
+	 * @param set2
+	 * @return the normalized distance between 0 and 1 for this bitlength. 0
+	 *         when close, 1 when far
+	 */
+	public double distance(final BitSet set1, final BitSet set2) {
+		final BitSet clone = (BitSet) set1.clone();
+		clone.xor(set2);
+		return (double) clone.cardinality() / (double) hashFunction.bits();
+	}
+
+	/**
+	 * @return the hashFunction
+	 */
+	public final HashFunction getHashFunction() {
+		return hashFunction;
 	}
 
 }

@@ -23,7 +23,7 @@ import org.apache.pdfbox.util.PDFTextStripper;
 import com.google.common.collect.ImmutableMultiset;
 import com.google.common.hash.Hashing;
 
-import fr.ujm.tse.lt2c.satin.simhash.knn.SimHashKNNDB;
+import fr.ujm.tse.lt2c.satin.simhash.knn.InMemorySimHashDB;
 
 /**
  * In this example we compute distance between different research papers :
@@ -58,7 +58,7 @@ public class ResearchAreas {
 
 	public static void main(final String[] args) {
 		// Init DB
-		final SimHashKNNDB knnDB = new SimHashKNNDB(Hashing.murmur3_128());
+		final InMemorySimHashDB knnDB = new InMemorySimHashDB(Hashing.murmur3_128());
 		// Iterate over pdf
 		final File dir = new File("pdfs/");
 		final File[] files = dir.listFiles();

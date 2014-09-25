@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package fr.ujm.tse.lt2c.satin.simhash.text.transform;
 
@@ -11,7 +11,7 @@ import fr.ujm.tse.lt2c.satin.simhash.text.transform.preprocessing.nlp.NLPPipelin
 
 /**
  * @author Julien Subercaze
- * 
+ *
  */
 public class Conversion implements ConversionMethod {
 
@@ -25,7 +25,7 @@ public class Conversion implements ConversionMethod {
 	}
 
 	/**
-	 * 
+	 *
 	 * @return a naive text to document conversion method, that counts word
 	 *         occurrences. Default minimmum occurrence and word length set to
 	 *         three. To set the values use {@link #naiveMethod(int, int)}
@@ -41,7 +41,7 @@ public class Conversion implements ConversionMethod {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see
 	 * fr.ujm.tse.lt2c.satin.simhash.knn.ConversionMethod#convert(java.lang.
 	 * String)
@@ -49,6 +49,18 @@ public class Conversion implements ConversionMethod {
 	@Override
 	public Map<String, Double> convert(final String text) {
 		return countingMethod.count(nlp.process(text));
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Conversion [nlp=" + nlp.getClass().getSimpleName()
+				+ ", countingMethod="
+				+ countingMethod.getClass().getSimpleName() + "]";
 	}
 
 }
