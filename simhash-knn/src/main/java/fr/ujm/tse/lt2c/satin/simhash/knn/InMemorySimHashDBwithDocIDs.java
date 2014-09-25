@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.Map;
 
 import com.google.common.hash.HashFunction;
@@ -36,6 +37,44 @@ public class InMemorySimHashDBwithDocIDs extends InMemorySimHashDB {
 	public void putDocument(final Map<String, Double> document,
 			final String documentID) {
 		super.putDocument(document);
+		documentIDs.add(documentID);
+	}
+
+	/**
+	 * Adds a pre-hashed document. Warning, use cautiously, may introduce values
+	 * from different hash functions into the DB.
+	 *
+	 * @param bitset
+	 *            Hash of the document
+	 * @param documentID
+	 *            id of the document
+	 */
+	public void putDocument(final BitSet bitset, final String documentID) {
+		long[] table = bitset.toLongArray();
+		if (table.length < simhash.bits() / 64) {
+			final long[] gros = new long[simhash.bits() / 64];
+			for (int i = 0; i < table.length; i++) {
+				gros[i] = table[i];
+			}
+			table = gros;
+		} else if (table.length > simhash.bits() / 64) {
+			throw new RuntimeException(
+					"Bitset is longer than the length of the hash function for this DB: "
+							+ simhash.bits() + ", yours " + table.length * 64);
+		}
+		this.putDocument(table, documentID);
+	}
+
+	/**
+	 *
+	 * @param hash
+	 *            must be of the same length as Hashfunction.bits()/64
+	 * @param documentID
+	 *            id of the document
+	 */
+	public void putDocument(final long[] hash, final String documentID) {
+
+		hashes.add(hash);
 		documentIDs.add(documentID);
 	}
 
@@ -106,7 +145,6 @@ public class InMemorySimHashDBwithDocIDs extends InMemorySimHashDB {
 
 			}
 		}
-
 	}
 
 	@Override

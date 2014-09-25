@@ -30,7 +30,7 @@ public class InMemorySimHashDB {
 	/**
 	 * Default size of the internal {@link ArrayList}
 	 */
-	private static final int DEFAULT_SIZE = 2 >> 12;
+	protected static final int DEFAULT_SIZE = 2 >> 12;
 
 	/**
 	 * Internal Storage
@@ -39,16 +39,16 @@ public class InMemorySimHashDB {
 	/**
 	 * SimHasher
 	 */
-	private final SimHash simhash;
+	protected final SimHash simhash;
 
 	/**
 	 * Charset for String encoding
 	 */
-	private final Charset charset;
+	protected final Charset charset;
 	/**
 	 * Description of the DB; optional
 	 */
-	private String description = "Simhash DB";
+	protected String description = "Simhash DB";
 
 	public InMemorySimHashDB() {
 		hashes = new ArrayList<>(DEFAULT_SIZE);
@@ -373,7 +373,7 @@ public class InMemorySimHashDB {
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
