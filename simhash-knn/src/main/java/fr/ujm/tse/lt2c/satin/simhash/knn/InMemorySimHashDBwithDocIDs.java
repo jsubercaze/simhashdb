@@ -51,19 +51,19 @@ public class InMemorySimHashDBwithDocIDs extends InMemorySimHashDB {
 	 *            id of the document
 	 */
 	public void putDocument(final BitSet bitset, final String documentID) {
-		long[] table = bitset.toLongArray();
-		if (table.length < simhash.bits() / 64) {
+		final long[] bits = bitset.toLongArray();
+		if (bits.length <= simhash.bits() / 64) {
 			final long[] gros = new long[simhash.bits() / 64];
-			for (int i = 0; i < table.length; i++) {
-				gros[i] = table[i];
+			for (int i = 0; i < gros.length; i++) {
+				gros[i] = bits[i];
 			}
-			table = gros;
-		} else if (table.length > simhash.bits() / 64) {
+			this.putDocument(gros, documentID);
+		} else {
+			// if (bits.length > simhash.bits() / 64) {
 			throw new RuntimeException(
 					"Bitset is longer than the length of the hash function for this DB: "
-							+ simhash.bits() + ", yours " + table.length * 64);
+							+ simhash.bits() + ", yours " + bits.length * 64);
 		}
-		this.putDocument(table, documentID);
 	}
 
 	/**
@@ -95,7 +95,6 @@ public class InMemorySimHashDBwithDocIDs extends InMemorySimHashDB {
 	 *            id of the document
 	 */
 	public void putDocument(final long[] hash, final String documentID) {
-
 		hashes.add(hash);
 		documentIDs.add(documentID);
 	}
