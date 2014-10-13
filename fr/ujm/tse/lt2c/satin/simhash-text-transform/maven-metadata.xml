@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>fr.ujm.tse.lt2c.satin</groupId>
+  <artifactId>simhash-text-transform</artifactId>
+  <versioning>
+    <versions>
+      <version>0.0.1-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20141013122633</lastUpdated>
+  </versioning>
+</metadata>
