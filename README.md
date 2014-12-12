@@ -31,6 +31,7 @@ First you need to setup the server in your pom.xml :
     </repositories>
 
 Then use the following dependency :
+
     <dependency>
      <groupId>fr.ujm.tse.lt2c.satin</groupId>
       <artifactId>simhashdb</artifactId>
