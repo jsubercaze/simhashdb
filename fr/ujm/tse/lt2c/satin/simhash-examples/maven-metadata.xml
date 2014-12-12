@@ -4,9 +4,8 @@
   <artifactId>simhash-examples</artifactId>
   <versioning>
     <versions>
-      <version>0.0.1-SNAPSHOT</version>
       <version>0.0.2-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20141016113315</lastUpdated>
+    <lastUpdated>20141212183845</lastUpdated>
   </versioning>
 </metadata>
