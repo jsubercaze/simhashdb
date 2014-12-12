@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>simhash-knn-benchmark</groupId>
+  <artifactId>simhash-knn-benchmark</artifactId>
+  <versioning>
+    <versions>
+      <version>0.0.2-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20141212183900</lastUpdated>
+  </versioning>
+</metadata>
