@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.ujm.tse.lt2c.satin.simhash.knn;
+package fr.ujm.tse.lt2c.satin.simhash.knn.db.query;
 
 /**
  * Result of a query

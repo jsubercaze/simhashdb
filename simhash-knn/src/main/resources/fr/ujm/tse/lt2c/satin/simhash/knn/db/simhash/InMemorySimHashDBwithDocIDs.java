@@ -1,7 +1,7 @@
 /**
  *
  */
-package fr.ujm.tse.lt2c.satin.simhash.knn;
+package fr.ujm.tse.lt2c.satin.simhash.knn.db.simhash;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.BitSet;
-import java.util.Collections;
 import java.util.Map;
 
 import com.google.common.hash.HashFunction;
@@ -74,7 +73,7 @@ public class InMemorySimHashDBwithDocIDs extends InMemorySimHashDB {
 	 * @return
 	 */
 	public String[] kNNFromDocumentID(final String documentID, final int k) {
-		final int index = Collections.binarySearch(documentIDs, documentID);
+		final int index = documentIDs.indexOf(documentID);
 		final int[] ids = this.kNearestNeighbors(index, k);
 		final String[] docIDs = new String[ids.length];
 		int i = 0;

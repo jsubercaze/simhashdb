@@ -13,7 +13,7 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMultiset;
 
-import fr.ujm.tse.lt2c.satin.simhash.knn.ConversionMethod;
+import fr.ujm.tse.lt2c.satin.simhash.knn.semanticsimhash.ConversionMethod;
 
 /**
  * 

@@ -19,6 +19,7 @@
 		<module>simhash-text-transform</module>
 		<!-- <module>simhash-text-transform-terrier</module> -->
 		<module>simhash-examples</module>
+		<module>simhash-knn-benchmark</module>
 	</modules>
 	<developers>
 		<developer>

@@ -3,13 +3,7 @@
  */
 package fr.ujm.tse.lt2c.satin.simhash.examples;
 
-import java.io.File;
-import java.util.Arrays;
-
-import com.google.common.hash.Hashing;
-
-import fr.ujm.tse.lt2c.satin.simhash.knn.ConversionMethod;
-import fr.ujm.tse.lt2c.satin.simhash.knn.InMemorySimHashDBwithDocIDs;
+import fr.ujm.tse.lt2c.satin.simhash.knn.semanticsimhash.ConversionMethod;
 
 /**
  * @author Julien
@@ -37,45 +31,6 @@ public class SimpleExampleWithDocIDs {
 		System.out.println(method.convert(s1));
 		System.out.println(method.convert(s2));
 		System.out.println(method.convert(s3));
-		final InMemorySimHashDBwithDocIDs db = new InMemorySimHashDBwithDocIDs(
-				Hashing.murmur3_128());
-		System.out.println("Adding documents to DB");
-		db.putDocument(method.convert(s1), "S1");
-		db.putDocument(method.convert(s2), "S2");
-		db.putDocument(method.convert(s3), "S3");
-
-		System.out.println();
-		System.out.println("--- DB Internals ---");
-		System.out.println(db.viewDB());
-
-		System.out.println();
-		System.out.println("---- 3NN of s1 (documents ids)");
-		// Takes everything
-		final String[] nns = db.kNNFromDocumentID("S1", db.size());
-		System.out.println(Arrays.toString(nns));
-
-		System.out.println();
-		System.out.println("Saving to disk");
-		final File f = new File("saveExampleDB.db");
-		db.saveHashes(f);
-
-		System.out.println();
-		System.out.println("Creating new db");
-		final InMemorySimHashDBwithDocIDs newdb = InMemorySimHashDBwithDocIDs
-				.loadFromFileSystem(f, Hashing.murmur3_128());
-
-		System.out.println();
-		System.out.println("--- New DB Internals ---");
-		System.out.println(newdb.viewDB());
-
-		System.out.println();
-		System.out.println("---- 3NN of s1 (documents ids) on the new db");
-		// Takes everything
-		// nns = newdb.kNearestNeighbors(method.convert(s1), newdb.size());
-		System.out.println(Arrays.toString(nns));
-
-		System.out.println("Deleting saved DB");
-		f.delete();
-
+		// FIXME new version
 	}
 }

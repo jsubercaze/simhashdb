@@ -5,7 +5,7 @@ package fr.ujm.tse.lt2c.satin.simhash.text.transform;
 
 import java.util.Map;
 
-import fr.ujm.tse.lt2c.satin.simhash.knn.ConversionMethod;
+import fr.ujm.tse.lt2c.satin.simhash.knn.semanticsimhash.ConversionMethod;
 import fr.ujm.tse.lt2c.satin.simhash.text.transform.preprocessing.counting.WordCountingI;
 import fr.ujm.tse.lt2c.satin.simhash.text.transform.preprocessing.nlp.NLPPipelineI;
 

@@ -1,4 +1,4 @@
-package fr.ujm.tse.lt2c.satin.simhash.knn;
+package fr.ujm.tse.lt2c.satin.simhash.knn.db.simhash;
 
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 
@@ -13,10 +13,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.collect.MinMaxPriorityQueue;
 import com.google.common.collect.Ordering;
 import com.google.common.hash.HashFunction;
 
 import fr.ujm.tse.lt2c.satin.simhash.core.hashing.SimHash;
+import fr.ujm.tse.lt2c.satin.simhash.knn.datastructure.storage.HashStorage;
+import fr.ujm.tse.lt2c.satin.simhash.knn.db.query.KnnQueryResult;
 
 /**
  * @author Julien Subercaze
@@ -31,11 +34,10 @@ public class InMemorySimHashDB {
 	 * Default size of the internal {@link ArrayList}
 	 */
 	protected static final int DEFAULT_SIZE = 2 >> 12;
-
 	/**
-	 * Internal Storage
+	 * Hash Store
 	 */
-	ArrayList<long[]> hashes;
+	HashStorage storage;
 	/**
 	 * SimHasher
 	 */
@@ -277,9 +279,18 @@ public class InMemorySimHashDB {
 		// overhead of Long
 		final LongArrayList distances = new LongArrayList(hashes.size());
 		int i = 0;
+		int added = 0;
+		long max = Long.MAX_VALUE;
 		for (final long[] hash : hashes) {
 			long d = distance(query, hash);
 			// System.out.println("Distance with " + i + " " + d);
+			if (added > k && d > max) {
+				continue;
+			}
+			if (d < max || added < k) {
+				max = d;
+				added++;
+			}
 			d = d << 32;
 			d += i;
 			distances.add(d);
@@ -295,6 +306,22 @@ public class InMemorySimHashDB {
 		// result[j++] = (int) (l & 0xFFFFFFFF);
 		// }
 		// return result;
+	}
+
+	private Long[] mainkNearestNeighbors2(final long[] query, final int k) {
+		final MinMaxPriorityQueue<Long> minmaxqueue = MinMaxPriorityQueue
+				.maximumSize(k).create();
+		final int i = 0;
+		for (final long[] hash : hashes) {
+			long d = distance(query, hash);
+			// System.out.println("Distance with " + i + " " + d);
+			d = d << 32;
+			d += i;
+			minmaxqueue.add(d);
+		}
+		final Long[] result = minmaxqueue.toArray(new Long[minmaxqueue.size()]);
+		return result;
+
 	}
 
 	protected long[] getHash(final int documentID) {

@@ -4,9 +4,10 @@
 	<parent>
 		<groupId>fr.ujm.tse.lt2c.satin</groupId>
 		<artifactId>simhash</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>simhash-text-transform</artifactId>
+	
 	<dependencies>
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -16,7 +17,7 @@
 		<dependency>
 			<groupId>fr.ujm.tse.lt2c.satin</groupId>
 			<artifactId>simhash-knn</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>edu.stanford.nlp</groupId>
@@ -54,7 +55,7 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-		
+
 
 	</dependencies>
 </project>

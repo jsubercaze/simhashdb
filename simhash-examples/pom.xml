@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>fr.ujm.tse.lt2c.satin</groupId>
 		<artifactId>simhash</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<artifactId>simhash-examples</artifactId>
 	<name>Examples</name>
@@ -13,7 +13,7 @@
 		<dependency>
 			<groupId>fr.ujm.tse.lt2c.satin</groupId>
 			<artifactId>simhash-knn</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
@@ -23,7 +23,7 @@
 		<dependency>
 			<groupId>fr.ujm.tse.lt2c.satin</groupId>
 			<artifactId>simhash-text-transform</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
