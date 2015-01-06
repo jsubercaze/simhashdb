@@ -26,17 +26,16 @@ import fr.ujm.tse.lt2c.satin.simhash.knn.db.hashes.SimpleInMemoryHashDB;
 @State(Scope.Thread)
 @Fork(1)
 @Measurement(iterations = 5)
-@BenchmarkMode(Mode.AverageTime)
+@BenchmarkMode(Mode.Throughput)
 @Warmup(iterations = 5)
 public class AverageTimeBenchmark {
 
 	@Param({ "2" })
 	public int hashsize;
-	@Param({ "5", "10", "50", "100", "200", "300", "400", "500" })
+	@Param({ "10", "50", "100", "500", "1000" })
 	public int k;
-	@Param({ "1000", "10000", "25000", "50000", "100000", "200000", "300000",
-			"400000", "500000", "600000", "700000", "800000", "900000",
-			"1000000" })
+	@Param({ "100000", "250000", "500000", "750000", "1000000", "2500000",
+			"5000000", "10000000" })
 	public int items;
 
 	public int queries = 10;
@@ -65,7 +64,9 @@ public class AverageTimeBenchmark {
 		final Random random = new Random();
 		for (int i = 0; i < queries; i++) {
 			final long[] query = new long[hashsize];
-			query[0] = random.nextLong();
+			for (int j = 0; j < hashsize; j++) {
+				query[j] = random.nextLong();
+			}
 			dbArray.kNNUnSorted(query, k);
 		}
 	}
@@ -75,7 +76,9 @@ public class AverageTimeBenchmark {
 		final Random random = new Random();
 		for (int i = 0; i < queries; i++) {
 			final long[] query = new long[hashsize];
-			query[0] = random.nextLong();
+			for (int j = 0; j < hashsize; j++) {
+				query[j] = random.nextLong();
+			}
 			dbGuava.kNNUnSorted(query, k);
 		}
 	}

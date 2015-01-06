@@ -1,7 +1,7 @@
 /**
  *
  */
-package fr.ujm.tse.lt2c.satin.text.simhash.text.test;
+package fr.ujm.tse.lt2c.satin.simhash.text.transform.utils;
 
 import java.text.BreakIterator;
 import java.util.ArrayList;

@@ -65,6 +65,14 @@ public class SimHash {
 		return hash(weightedStrings, Charset.defaultCharset());
 	}
 
+	public long[] hashToArray(final Map<String, Double> weightedStrings) {
+		final long[] res = new long[hashFunction.bits()];
+		final BitSet bits = this.hash(weightedStrings);
+		System.arraycopy(bits.toLongArray(), 0, res, 0,
+				bits.toLongArray().length);
+		return res;
+	}
+
 	private void weightHashCode(final HashCode hash, final double weight,
 			final double[] weighted) {
 		// Add the weighted hashcode in the array
