@@ -1,17 +1,35 @@
-Simhashdb
+SimhashDB
 =========
 
-Scalabale and fast framework for simhash similarity search.
- * Core : Support for Simhash
- * KNN : Database for fast knn search using binary footprint
+SimhashDB is a fast and scalable framework for searching nearest neighbor documents using [Simhash algorithm](http://www.cs.princeton.edu/courses/archive/spr04/cos598B/bib/CharikarEstim.pdf).
+
+The framework is made of the following submodule
+
+ * Core : SimHash algorithm
+ * KNN : In memory database for nearest neighbor search
  * Text transform : Tools to transform text into binary footprint
+ * Text transform Terrier: Tools to transform text into binary footprint using the [Terrier IR engine](http://terrier.org/)
  * Examples : some code samples
+ * KNN Benchmark : jmh benchmark to assess KNN performance
+
+Basics
+------
+
+The core module transforms any Map of key values where keys are String and value are Double into a binary footprint (BitSet).
+The KNN module offers the storage layer where binary footprints are inserted and requested. The storage is in-memory only for now. Nearest neighbor documents can be searched with either a top-k or Hamming ball query.
+
+Performance
+-----------
+
+
 
 
 Sample use
 ----------
 Clone the git repository and run mvn install 
 Alternatively see the Maven Section to use the github hosted repository
+
+
 
 
 Maven
