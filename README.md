@@ -56,5 +56,9 @@ Then use the following dependency :
       <version>0.0.2-SNAPSHOT</version>
     </dependency>
 
+Publication
+-----------
 
+If you used Simhashdb in a publication please contact me so that I add it to the list
+* Julien Subercaze, Christophe Gravier, Frederique Laforest. Real-Time, Scalable, Content-based Twitter users recommendation. Web Intelligence and Agent Systems : An International Journal (WIAS), 2015 [PDF](https://hal.archives-ouvertes.fr/hal-01170244/document)
 
