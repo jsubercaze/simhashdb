@@ -18,7 +18,7 @@
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
 			<artifactId>pdfbox</artifactId>
-			<version>1.8.6</version>
+			<version>[1.8.16,)</version>
 		</dependency>
 		<dependency>
 			<groupId>fr.ujm.tse.lt2c.satin</groupId>
