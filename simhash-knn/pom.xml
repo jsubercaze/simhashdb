@@ -14,12 +14,12 @@
 		<repository>
 			<id>satin-artifactory</id>
 			<name>satin-releases</name>
-			<url>http://10.20.0.55:8081/artifactory/satin-public</url>
+			<url>https://10.20.0.55:8081/artifactory/satin-public</url>
 		</repository>
 		<snapshotRepository>
 			<id>satin-artifactory</id>
 			<name>satin-snapshots</name>
-			<url>http://10.20.0.55:8081/artifactory/satin-public</url>
+			<url>https://10.20.0.55:8081/artifactory/satin-public</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<dependencies>
