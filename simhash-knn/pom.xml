@@ -10,18 +10,6 @@
 	<name>Simhash Nearest Neighbor</name>
 	<description>API to search for K nearest neighbor, in memory storage of hashes</description>
 
-	<distributionManagement>
-		<repository>
-			<id>satin-artifactory</id>
-			<name>satin-releases</name>
-			<url>http://10.20.0.55:8081/artifactory/satin-public</url>
-		</repository>
-		<snapshotRepository>
-			<id>satin-artifactory</id>
-			<name>satin-snapshots</name>
-			<url>http://10.20.0.55:8081/artifactory/satin-public</url>
-		</snapshotRepository>
-	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>fr.ujm.tse.lt2c.satin</groupId>
